@@ -9,6 +9,8 @@ import SignUp from "./pages/SignUp"
 import LogIn from "./pages/LogIn"
 import CourseDetails from "./pages/course_details"
 import Assignment from "./pages/assignment"
+import ActivityPage from "./pages/ActivityPage"
+import PaymentHistory from "./pages/PaymentHistory"
 
 
 function App() {
@@ -23,6 +25,8 @@ function App() {
           <Route path="/login" element={<LogIn/>} />
           <Route path="/coursedetails" element={<CourseDetails/>} />
           <Route path="/assignment" element={<Assignment/>} />
+          <Route path="/activity" element={<ActivityPage />} />
+          <Route path="/payment-history" element={<PaymentHistory />} />
           
         </Routes>
         <Footer/>
