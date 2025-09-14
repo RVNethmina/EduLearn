@@ -9,6 +9,7 @@ import SignUp from "./pages/SignUp"
 import LogIn from "./pages/LogIn"
 import CourseDetails from "./pages/course_details"
 import Assignment from "./pages/assignment"
+import ForgotPassword from "./pages/ForgotPassword.jsx"
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
           <Route path="/login" element={<LogIn/>} />
           <Route path="/coursedetails" element={<CourseDetails/>} />
           <Route path="/assignment" element={<Assignment/>} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
           
         </Routes>
         <Footer/>

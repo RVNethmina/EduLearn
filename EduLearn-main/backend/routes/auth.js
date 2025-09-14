@@ -1,5 +1,6 @@
 const express = require('express');
 const User = require('../models/User');
+const nodemailer = require('nodemailer');
 const jwt = require('jsonwebtoken');
 
 const router = express.Router();
@@ -51,6 +52,7 @@ router.post('/login', async (req, res) => {
   }
 });
 
+//froget password
 // Social Login Redirect
 router.get('/social/:provider', (req, res) => {
   const provider = req.params.provider;
@@ -66,4 +68,42 @@ router.get('/social/:provider/callback', async (req, res) => {
   res.json({ message: `Social login callback for ${provider} - implement OAuth logic` });
 });
 
+// Forgot Password
+router.post('/forgot-password', async (req, res) => {
+  const { email } = req.body;
+
+  if (!email) {
+    return res.status(400).json({ error: 'Email is required.' });
+  }
+
+  try {
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(200).json({ message: 'If an account exists, a reset link will be sent.' }); // Avoid leaking user existence
+    }
+
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+    const resetLink = `http://localhost:5173/reset-password?token=${token}`;
+
+    const transporter = nodemailer.createTransport({
+      service: 'gmail', // Use your email service (e.g., Gmail)
+      auth: {
+        user: process.env.EMAIL_USER, // Use environment variable
+        pass: process.env.EMAIL_PASS, // Use environment variable
+      },
+    });
+
+    await transporter.sendMail({
+      from: process.env.EMAIL_USER,
+      to: email,
+      subject: 'Password Reset Request',
+      text: `Click this link to reset your password: ${resetLink}`,
+    });
+
+    res.status(200).json({ message: 'If an account exists, a reset link has been sent.' });
+  } catch (error) {
+    console.error('Forgot Password Error:', error);
+    res.status(500).json({ error: 'Server error during password reset request.' });
+  }
+});
 module.exports = router;
