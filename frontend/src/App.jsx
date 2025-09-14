@@ -7,7 +7,7 @@ import AboutPage from "./pages/AboutPage"
 import HomePage from "./pages/homePage"
 import SignUp from "./pages/SignUp"
 import LogIn from "./pages/LogIn"
-import InstrcutorDashboard from "./pages/InstrcutorDashboard"
+import InstrcutorDashboard from "./pages/InstrcutorDashboardPage"
 import CourseEditPage from "./pages/CourseEditPage"
 
 
