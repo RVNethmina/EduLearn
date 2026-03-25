@@ -7,12 +7,16 @@ import AboutPage from "./pages/aboutPage"
 import HomePage from "./pages/homePage"
 import SignUp from "./pages/SignUp"
 import LogIn from "./pages/LogIn"
+
+import ProgressTracking from "./pages/ProgressTracking"
+import ContentUpload from "./pages/ContentUploadPage"
 import CourseDetails from "./pages/course_details"
 import Assignment from "./pages/assignment"
 import ActivityPage from "./pages/ActivityPage"
 import PaymentHistory from "./pages/PaymentHistory"
 import UserProfile from "./pages/user-profile"
 import UserPasswordReset from "./pages/user-password-reset"
+
 
 
 function App() {
@@ -25,6 +29,9 @@ function App() {
           <Route path="/about" element={<AboutPage/>} />
           <Route path="/signup" element={<SignUp/>} />
           <Route path="/login" element={<LogIn/>} />
+          <Route path="/progress" element={<ProgressTracking/>} />
+          <Route path="/contentupload" element={<ContentUpload/>} />
+          <Route path="/error" element={<ErrorPage/>} /
           <Route path="/coursedetails" element={<CourseDetails/>} />
           <Route path="/assignment" element={<Assignment/>} />
           <Route path="/activity" element={<ActivityPage />} />
